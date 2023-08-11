@@ -11,6 +11,13 @@
 8. git pull origin main
 9. git checkout -b development
 10. cd frontend
+11. npm start
+
+## Installed dependecies
+1. npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+2. npm install formik yup
+3. npm install react-router-dom
+4. npm install react-icons --save
 
 ## Version code:
 • Preparation:\
