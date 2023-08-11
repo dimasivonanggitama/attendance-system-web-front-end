@@ -31,6 +31,7 @@
 &emsp;FE-LOGI = Login Form
 
 • Sections:\
+&emsp;FE-HERO = Hero
 
 • Pages:\
 
