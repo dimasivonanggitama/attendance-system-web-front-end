@@ -34,6 +34,7 @@
 &emsp;FE-HERO = Hero
 
 • Pages:\
+&emsp;FE-HOME = Landing Page (Login)
 
 # Getting Started with Create React App
 
