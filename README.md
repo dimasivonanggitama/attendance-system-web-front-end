@@ -16,8 +16,9 @@
 ## Installed dependecies
 1. npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
 2. npm install formik yup
-3. npm install react-router-dom
-4. npm install react-icons --save
+3. npm install axios
+4. npm install react-router-dom
+5. npm install react-icons --save
 
 ## Version code:
 • Preparation:\
