@@ -27,6 +27,7 @@
 • Components:\
 &emsp;FE-FOCA = Form Card\
 &emsp;FE-INPA = Input Password\
+&emsp;FE-INWE = Input With Error\
 &emsp;FE-LOGI = Login Form
 
 • Sections:\
