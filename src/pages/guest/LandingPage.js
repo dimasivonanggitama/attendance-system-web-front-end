@@ -1,7 +1,7 @@
 import { Box, VStack } from '@chakra-ui/react'
 import React from 'react'
-import LoginForm from '../components/form/LoginForm'
-import Hero from '../components/section/Hero'
+import Hero from '../../components/section/Hero'
+import LoginForm from '../../components/form/LoginForm'
 
 const LandingPage = () => {
   return (
