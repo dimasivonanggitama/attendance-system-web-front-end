@@ -39,7 +39,8 @@
 
 • Sections:\
 &emsp;FE-HEAD = Header\
-&emsp;FE-HERO = Hero
+&emsp;FE-HERO = Hero\
+&emsp;FE-SIDE = Sidebar
 
 • Pages:\
 &emsp;FE-HOME = Landing Page (Login)\
