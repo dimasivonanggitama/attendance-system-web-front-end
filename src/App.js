@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/guest/LandingPage";
 import UserManagementPage from "./pages/admin/UserManagementPage";
+import TestPage from "./pages/universal/TestPage";
 // import ForgotPassword from "./pages/ForgotPassword";
 // import SuccessPage from "./pages/guest/SuccessPage";
 // import ResetPasswordPage from "./pages/guest/ResetPasswordPage";
@@ -19,8 +20,8 @@ function App() {
         <Route path="/forgotPassword/passwordReset" element={<SuccessPage purpose="reset"/>} />
         <Route path="/forgotPassword/resetPassword" element={<ResetPasswordPage/>} />
         <Route path="/main" element={<MainPage role="kasir"/>} />
-        <Route path="/product" element={<ProductPage role="admin" sidebar="product"/>} />
-        <Route path="/test" element={<TestPage/>} /> */}
+        <Route path="/product" element={<ProductPage role="admin" sidebar="product"/>} /> */}
+        <Route path="/test" element={<TestPage/>} />
       </Routes>
     </Router>
   );
