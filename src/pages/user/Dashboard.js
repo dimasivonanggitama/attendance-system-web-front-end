@@ -5,11 +5,11 @@ import Sidebar from '../../components/section/Sidebar'
 
 const Dashboard = (props) => {
   return (
-    <Box height={"90vh"}>
+    <Box>
       <Header />
-      <Box display={"flex"} flexDirection={"row"}>
+      <Box maxHeight={"90vh"} display={"flex"} flexDirection={"row"}>
         <Sidebar role={props.role} sidebar={props.sidebar}/>
-        <Box display={"flex"} maxHeight={"90vh"} width="100%" bgColor={"lightgrey"} overflowY={"auto"}>
+        <Box width="100%" padding={5} bgColor={"lightgrey"} overflowY={"auto"}>
           {props.children}
         </Box>
       </Box>
