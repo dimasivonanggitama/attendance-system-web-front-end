@@ -1,9 +1,10 @@
 import React from 'react'
 import Dashboard from '../user/Dashboard'
-import { Box, HStack, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr, VStack } from '@chakra-ui/react'
+import { Box, HStack, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr, VStack, useDisclosure } from '@chakra-ui/react'
 import { TbUserPlus } from 'react-icons/tb'
 
 const UserManagementPage = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Dashboard>
       <Box >
