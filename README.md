@@ -12,6 +12,12 @@
 9. git checkout -b development
 10. cd frontend
 11. npm start
+12. Installed dependencies
+13. Added <ChakraProvider> on index.js
+14. Added import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; on App.js
+15. <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage/>} />
 
 ## Installed dependecies
 1. npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
@@ -32,10 +38,12 @@
 &emsp;FE-LOGI = Login Form
 
 • Sections:\
+&emsp;FE-HEAD = Header\
 &emsp;FE-HERO = Hero
 
 • Pages:\
-&emsp;FE-HOME = Landing Page (Login)
+&emsp;FE-HOME = Landing Page (Login)\
+&emsp;FE-USMA = User Management Page
 
 # Getting Started with Create React App
 
