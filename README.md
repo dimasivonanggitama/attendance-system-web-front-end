@@ -45,6 +45,7 @@
 • Pages:\
 &emsp;FE-DASH = Dashboard template page\
 &emsp;FE-HOME = Landing Page (Login)\
+&emsp;FE-TEST = Test Page\
 &emsp;FE-USMA = User Management Page
 
 # Getting Started with Create React App
