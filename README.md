@@ -43,6 +43,7 @@
 &emsp;FE-SIDE = Sidebar
 
 • Pages:\
+&emsp;FE-DASH = Dashboard template page\
 &emsp;FE-HOME = Landing Page (Login)\
 &emsp;FE-USMA = User Management Page
 
