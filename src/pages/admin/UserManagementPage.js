@@ -4,9 +4,46 @@ import { Box, Button, HStack, Input, Select, Table, TableCaption, TableContainer
 import { TbUserPlus } from 'react-icons/tb'
 import ModalRegular from '../../components/modal/ModalRegular'
 import InputWithError from '../../components/input/InputWithError'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import * as Yup from "yup";
 
 const UserManagementPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  
+  // const [show, setShow] = useState(false);
+  // const handleClick = () => setShow(!show);
+
+  const addEmployeeSchema = useFormik({
+      initialValues: {
+          email: "",
+          fullname: "",
+          role_id: ""
+      },
+      validationSchema: Yup.object({
+          email: Yup.string()
+              .email("Format email tidak benar!")
+              .required("Username tidak boleh kosong!"),
+          password: Yup.string()
+              .matches(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[`~!@#$%^&*()_+=,{}[\]|:;'"><>?/])[a-zA-Z\d`~!@#$%^&*()_+=,{}[\]|:;'"><>?/]+$/, "Kata sandi harus kombinasi alphanumerik dan karakter spesial!")
+              .min(6, "Kata sandi setidaknya minimal 6 karakter!")
+              .required("Kata sandi tidak boleh kosong!")
+      }),
+      onSubmit: async values => {
+          // alert(JSON.stringify(values, null, 2));
+
+          // const axios = require("axios");
+          await axios.post("https://minpro-blog.purwadhikabootcamp.com/api/auth/login", {
+              username: values.username,
+              password: values.password
+          }).then(resp => {
+              alert(`[resp.data]: ${resp.data}`);
+          }).catch(error => {
+              alert(`[error.response.data.err] ${error.response.data.err}`);
+          });
+          alert("Done");
+      }
+  });
 
   const modalTitle = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
     <TbUserPlus size={70}/>
