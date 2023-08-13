@@ -8,11 +8,9 @@ const InputWithError = (props) => {
             borderRadius="10"
             bgColor={bool? 'red' : 'transparent'}
             color="white"
-            marginX="5"
-            marginY="5"
-            paddingX="1"
-            paddingTop="1"
-            paddingBottom="1"
+            margin="5"
+            padding="1"
+            width="100%"
             in={bool}
             sx={{
                 "transition": "background-color 0.5s ease-out"
