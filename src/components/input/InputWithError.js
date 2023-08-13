@@ -3,13 +3,15 @@ import React from 'react'
 
 const InputWithError = (props) => {
     const bool = props.errors && props.touched;
+    const margin = (props.margin)? props.margin : 5;
+    const padding = (props.padding)? props.padding : 1;
     return (
         <Box
             borderRadius="10"
             bgColor={bool? 'red' : 'transparent'}
             color="white"
-            margin="5"
-            padding="1"
+            margin={margin}
+            padding={padding}
             width="100%"
             in={bool}
             sx={{
