@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/guest/LandingPage";
 import UserManagementPage from "./pages/admin/UserManagementPage";
 import TestPage from "./pages/universal/TestPage";
+import RoleManagementPage from "./pages/admin/RoleManagementPage";
 // import ForgotPassword from "./pages/ForgotPassword";
 // import SuccessPage from "./pages/guest/SuccessPage";
 // import ResetPasswordPage from "./pages/guest/ResetPasswordPage";
@@ -15,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage/>} />
         <Route path="/user-management" element={<UserManagementPage/>} />
-        {/* <Route path="/forgotPassword" element={<ForgotPassword/>} />
-        <Route path="/forgotPassword/emailSent" element={<SuccessPage purpose="email"/>} />
+        <Route path="/role-management" element={<RoleManagementPage/>} />
+        {/* <Route path="/forgotPassword/emailSent" element={<SuccessPage purpose="email"/>} />
         <Route path="/forgotPassword/passwordReset" element={<SuccessPage purpose="reset"/>} />
         <Route path="/forgotPassword/resetPassword" element={<ResetPasswordPage/>} />
         <Route path="/main" element={<MainPage role="kasir"/>} />
