@@ -3,12 +3,6 @@ import LandingPage from "./pages/guest/LandingPage";
 import UserManagementPage from "./pages/admin/UserManagementPage";
 import TestPage from "./pages/universal/TestPage";
 import RoleManagementPage from "./pages/admin/RoleManagementPage";
-// import ForgotPassword from "./pages/ForgotPassword";
-// import SuccessPage from "./pages/guest/SuccessPage";
-// import ResetPasswordPage from "./pages/guest/ResetPasswordPage";
-// import MainPage from "./pages/user/MainPage";
-// import TestPage from "./pages/TestPage";
-// import ProductPage from "./pages/user/ProductPage";
 
 function App() {
   return (
