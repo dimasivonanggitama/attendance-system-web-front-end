@@ -32,8 +32,8 @@ const RoleManagementPage = () => {
                         </Tbody>
                         <Tfoot>
                             <Tr>
-                                <Th></Th>
-                                <Th><RoleForm /></Th>
+                                <Td></Td>
+                                <Td><RoleForm /></Td>
                             </Tr>
                         </Tfoot>
                     </Table>
