@@ -1,12 +1,13 @@
 import React from 'react'
 import Dashboard from '../user/Dashboard'
-import { Box, HStack, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr, VStack, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, HStack, Input, Select, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr, VStack, useDisclosure } from '@chakra-ui/react'
 import { TbUserPlus } from 'react-icons/tb'
 import ModalRegular from '../../components/modal/ModalRegular'
 import InputWithError from '../../components/input/InputWithError'
 
 const UserManagementPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const modalTitle = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
     <TbUserPlus size={70}/>
     <Text as={"b"} fontSize="2xl">Tambah Pegawai</Text>
@@ -49,8 +50,19 @@ const UserManagementPage = () => {
               </Tbody>
             </Table>
           </TableContainer>
-          <ModalRegular title={modalTitle} isOpen={isOpen} onCloseX={onClose}>
-            
+          <ModalRegular title={modalTitle} isOpen={isOpen} onCloseX={onClose} primaryButton="Tambah" primaryButtonColor="green">
+            <InputWithError errors={addEmployeeSchema.errors.email} touched={addEmployeeSchema.touched.email}>
+              <Input type="text" name="email" placeholder='Alamat email' bgColor="white" borderColor={"grey"} color={"black"} value={addEmployeeSchema.values.email} onChange={addEmployeeSchema.handleChange}/>
+            </InputWithError>
+            <InputWithError errors={addEmployeeSchema.errors.fullname} touched={addEmployeeSchema.touched.fullname}>
+              <Input type="text" name="fullname" placeholder='Nama lengkap' bgColor="white" borderColor={"grey"} color={"black"} value={addEmployeeSchema.values.fullname} onChange={addEmployeeSchema.handleChange}/>
+            </InputWithError>
+            <InputWithError errors={addEmployeeSchema.errors.role} touched={addEmployeeSchema.touched.role}>
+              <Select name='role' placeholder='- - - Pilih peran - - -' bgColor="white" borderColor={"grey"} color={"black"} >
+                <option value="admin">Admin</option>
+                <option value="employee">Employee</option>
+              </Select>
+            </InputWithError>
           </ModalRegular>
         </Box>
       </Box>
