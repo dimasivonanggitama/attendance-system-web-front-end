@@ -1,41 +1,43 @@
 import React from 'react'
 import Dashboard from '../user/Dashboard'
-import { Box, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
+import RoleForm from '../../components/form/RoleForm'
 
 const RoleManagementPage = () => {
     return (
         <Dashboard>
-            <Box>
-                <Box bgColor={"white"} borderRadius={15}>
-                    <TableContainer>
-                        <Table variant="simple">
-                            <Thead>
-                                <Tr>
-                                    <Th>To convert</Th>
-                                    <Th >into</Th>
-                                    <Th isNumeric>multiply by</Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody>
-                                <Tr>
-                                    <Td>inches</Td>
-                                    <Td>millimetres (mm)</Td>
-                                    <Td isNumeric>25.4</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td>feet</Td>
-                                    <Td>centimetres (cm)</Td>
-                                    <Td isNumeric>30.48</Td>
-                                </Tr>
-                                <Tr>
-                                    <Td>yards</Td>
-                                    <Td>metres (m)</Td>
-                                    <Td isNumeric>0.91444</Td>
-                                </Tr>
-                            </Tbody>
-                        </Table>
-                    </TableContainer>
-                </Box>
+            {/* <RoleForm> */}
+            <Box bgColor={"white"} borderRadius={15}>
+                <TableContainer>
+                    <Table variant="simple">
+                        <Thead>
+                            <Tr>
+                                <Th width={"5%"}>To convert</Th>
+                                <Th >into</Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            <Tr>
+                                <Td width={"5%"}>inches</Td>
+                                <Td>millimetres (mm)</Td>
+                            </Tr>
+                            <Tr>
+                                <Td width={"5%"}>feet</Td>
+                                <Td>centimetres (cm)</Td>
+                            </Tr>
+                            <Tr>
+                                <Td width={"5%"}>yards</Td>
+                                <Td>metres (m)</Td>
+                            </Tr>
+                        </Tbody>
+                        <Tfoot>
+                            <Tr>
+                                <Th></Th>
+                                <Th><RoleForm /></Th>
+                            </Tr>
+                        </Tfoot>
+                    </Table>
+                </TableContainer>
             </Box>
         </Dashboard>
     )
