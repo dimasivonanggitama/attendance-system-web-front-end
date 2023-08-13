@@ -35,7 +35,8 @@
 &emsp;FE-FOCA = Form Card\
 &emsp;FE-INPA = Input Password\
 &emsp;FE-INWE = Input With Error\
-&emsp;FE-LOGI = Login Form
+&emsp;FE-LOGI = Login Form\
+&emsp;FE-ROFO = Role Form
 
 • Sections:\
 &emsp;FE-HEAD = Header\
