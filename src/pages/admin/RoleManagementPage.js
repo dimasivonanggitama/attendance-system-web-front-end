@@ -1,9 +1,21 @@
-import React from 'react'
-import Dashboard from '../user/Dashboard'
 import { Box, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import Dashboard from '../user/Dashboard'
 import RoleForm from '../../components/form/RoleForm'
 
 const RoleManagementPage = () => {
+    const [data, setData] = useState([]);
+    
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/admin/role')
+            .then(response => {
+                alert(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data: ', error);
+            });
+    }, []);
     return (
         <Dashboard>
             {/* <RoleForm> */}
