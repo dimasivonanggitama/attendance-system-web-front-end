@@ -7,25 +7,28 @@ import RoleForm from '../../components/form/RoleForm'
 const RoleManagementPage = () => {
     const [role, setRole] = useState([]);
     
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/admin/role')
+    const fetchData = async () => {
+        await axios.get('http://localhost:8000/api/admin/role')
         .then(response => {
             setRole(response.data);
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
         });
+    }
+
+    useEffect(() => {
+        fetchData();
     }, []);
     console.log(role)
     return (
         <Dashboard>
-            {/* <RoleForm> */}
             <Box bgColor={"white"} borderRadius={15}>
                 <TableContainer>
                     <Table variant="simple">
                         <Thead>
                             <Tr>
-                                <Th width={"5%"}>iD</Th>
+                                <Th width={"5%"}>ID</Th>
                                 <Th>Peran</Th>
                             </Tr>
                         </Thead>
