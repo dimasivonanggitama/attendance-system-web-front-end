@@ -20,7 +20,6 @@ const RoleManagementPage = () => {
     useEffect(() => {
         fetchData();
     }, []);
-    console.log(role)
     return (
         <Dashboard>
             <Box bgColor={"white"} borderRadius={15}>
@@ -34,11 +33,15 @@ const RoleManagementPage = () => {
                         </Thead>
                         <Tbody>
                             {
-                                (role.length === 0)? 
+                                (role.length === 0)? <Tr>
+                                    <Td colSpan={2} textAlign={"center"}>Daftar peran akan muncul di sini</Td>
+                                </Tr>
+                                : role.map(item => (
                                     <Tr>
-                                        <Td colSpan={2} textAlign={"center"}>Daftar peran akan muncul di sini</Td>
+                                        <Td width={"5%"}>{item.role_id}</Td>
+                                        <Td>{item.role_name}</Td>
                                     </Tr>
-                                : <></>
+                                ))
                             }
                             {/* <Tr>
                                 <Td width={"5%"}>feet</Td>
@@ -48,7 +51,7 @@ const RoleManagementPage = () => {
                         <Tfoot>
                             <Tr>
                                 <Td></Td>
-                                <Td><RoleForm /></Td>
+                                <Td><RoleForm fetchData={fetchData}/></Td>
                             </Tr>
                         </Tfoot>
                     </Table>
