@@ -5,17 +5,18 @@ import Dashboard from '../user/Dashboard'
 import RoleForm from '../../components/form/RoleForm'
 
 const RoleManagementPage = () => {
-    const [data, setData] = useState([]);
+    const [role, setRole] = useState([]);
     
     useEffect(() => {
         axios.get('http://localhost:8000/api/admin/role')
-            .then(response => {
-                alert(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching data: ', error);
-            });
+        .then(response => {
+            setRole(response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching data: ', error);
+        });
     }, []);
+    console.log(role)
     return (
         <Dashboard>
             {/* <RoleForm> */}
@@ -24,23 +25,22 @@ const RoleManagementPage = () => {
                     <Table variant="simple">
                         <Thead>
                             <Tr>
-                                <Th width={"5%"}>To convert</Th>
-                                <Th >into</Th>
+                                <Th width={"5%"}>iD</Th>
+                                <Th>Peran</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            <Tr>
-                                <Td width={"5%"}>inches</Td>
-                                <Td>millimetres (mm)</Td>
-                            </Tr>
-                            <Tr>
+                            {
+                                (role.length === 0)? 
+                                    <Tr>
+                                        <Td colSpan={2} textAlign={"center"}>Daftar peran akan muncul di sini</Td>
+                                    </Tr>
+                                : <></>
+                            }
+                            {/* <Tr>
                                 <Td width={"5%"}>feet</Td>
                                 <Td>centimetres (cm)</Td>
-                            </Tr>
-                            <Tr>
-                                <Td width={"5%"}>yards</Td>
-                                <Td>metres (m)</Td>
-                            </Tr>
+                            </Tr> */}
                         </Tbody>
                         <Tfoot>
                             <Tr>
