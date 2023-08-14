@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import * as Yup from "yup";
 
-const RoleForm = () => {
+const RoleForm = (props) => {
     const addRoleSchema = useFormik({
         initialValues: {
             roleName: ""
@@ -16,17 +16,14 @@ const RoleForm = () => {
                 .required("Peran tidak boleh kosong!"),
         }),
         onSubmit: async values => {
-            // alert(JSON.stringify(values, null, 2));
-  
-            // const axios = require("axios");
-            await axios.post("https://minpro-blog.purwadhikabootcamp.com/api/auth/login", {
+            await axios.post("http://localhost:8000/api/admin/role/create", {
                 roleName: values.roleName
             }).then(resp => {
-                alert(`[resp.data]: ${resp.data}`);
+                props.fetchData();
             }).catch(error => {
-                alert(`[error.response.data.err] ${error.response.data.err}`);
+                console.log(error.response.data.error);
+                alert(error.response.data.message);
             });
-            alert("Done");
         }
     });
   return (
