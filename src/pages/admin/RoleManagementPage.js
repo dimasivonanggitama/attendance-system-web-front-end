@@ -9,6 +9,7 @@ import { useFormik } from 'formik'
 import * as Yup from "yup";
 import ModalRegular from '../../components/modal/ModalRegular'
 import EditRoleForm from '../../components/form/EditRoleForm'
+import ModalBlank from '../../components/modal/ModalBlank'
 
 const RoleManagementPage = () => {
     const modalRoleEdit = useDisclosure();
@@ -39,12 +40,6 @@ const RoleManagementPage = () => {
     useEffect(() => {
         handleAllCheckboxChange(false);
     }, [role]);
-    
-    
-    const modalRoleEditTitle = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-        <TbShieldCog size={70}/>
-        <Text as={"b"} fontSize="2xl">Ubah Peran</Text>
-    </Box>;
 
     const modalRoleEditDelete = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
         <TbShieldCancel size={70}/>
@@ -137,9 +132,9 @@ const RoleManagementPage = () => {
                     </Table>
                 </TableContainer>
             </Box>
-            <ModalRegular isOpen={modalRoleEdit.isOpen} onCloseX={modalRoleEdit.onClose} /*onSubmit={}*/ title={modalRoleEditTitle} primaryButtonColor={"green"} primaryButton={"Simpan"} >
-                <EditRoleForm />
-            </ModalRegular>
+            <ModalBlank isOpen={modalRoleEdit.isOpen} onCloseX={modalRoleEdit.onClose}>
+                <EditRoleForm selectedRole={selectedRole}/>
+            </ModalBlank>
         </Dashboard>
     )
 }
