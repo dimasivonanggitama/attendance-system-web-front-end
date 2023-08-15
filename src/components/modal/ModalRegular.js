@@ -16,7 +16,7 @@ const ModalRegular = (props) => {
                         (props.secondaryButton)? <Button variant='ghost' marginRight={5} onClick={props.onClickSecondaryButton}>{props.secondaryButton}</Button>
                         : <></>
                     }
-                    <Button type="submit" colorScheme={props.primaryButtonColor} mr={3} onClick={props.onClose}>{primaryButtonText}</Button>
+                    <Button type="submit" colorScheme={props.primaryButtonColor} mr={3} onClick={props.onSubmit}>{primaryButtonText}</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>
