@@ -10,7 +10,7 @@ import { TbShieldCog } from 'react-icons/tb';
 const EditRoleForm = (props) => {
     const editRoleSchema = useFormik({
         initialValues: {
-            roleNameEdit: props.selectedRole
+            roleNameEdit: props.selectedRole.role_name
         },
         validationSchema: Yup.object({
             roleNameEdit: Yup.string()
@@ -19,7 +19,8 @@ const EditRoleForm = (props) => {
         }),
         onSubmit: async values => {
             await axios.post("http://localhost:8000/api/admin/role/test", {
-                roleNameEdit: values.roleNameEdit
+                roleNameEdit: values.roleNameEdit,
+                roleIDEdit: props.selectedRole.role_id
             }).then(resp => {
                 props.fetchData();
             }).catch(error => {
