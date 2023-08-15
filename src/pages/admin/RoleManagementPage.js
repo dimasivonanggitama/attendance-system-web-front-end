@@ -32,6 +32,7 @@ const RoleManagementPage = () => {
 
     useEffect(() => {
         handleAllCheckboxChange(false);
+        modalRoleEdit.onClose();
     }, [role]);
 
     const modalRoleEditDelete = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
