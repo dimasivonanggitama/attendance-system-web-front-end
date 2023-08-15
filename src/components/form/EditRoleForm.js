@@ -4,7 +4,7 @@ import axios from 'axios';
 import React from 'react';
 import ModalRegular from '../modal/ModalRegular';
 import InputWithError from '../input/InputWithError';
-import { Box, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Input, ModalBody, ModalFooter, ModalHeader, Text } from '@chakra-ui/react';
 import { TbShieldCog } from 'react-icons/tb';
 
 const EditRoleForm = (props) => {
@@ -30,9 +30,17 @@ const EditRoleForm = (props) => {
         }
     });
     return (
-        <InputWithError margin={"0"} padding={"1"} errors={editRoleSchema.errors.roleNameEdit} touched={editRoleSchema.touched.roleNameEdit}>
-            <Input type="text" name="roleNameEdit" placeholder='Ubah peran' bgColor="white" borderColor={"grey"} color={"black"} value={editRoleSchema.values.roleNameEdit} onChange={editRoleSchema.handleChange}/>
-        </InputWithError>
+        <form onSubmit={editRoleSchema.handleSubmit}>
+            <ModalHeader>{props.title}</ModalHeader>
+                <ModalBody textAlign={"center"}>
+                    <InputWithError margin={"0"} padding={"1"} errors={editRoleSchema.errors.roleNameEdit} touched={editRoleSchema.touched.roleNameEdit}>
+                        <Input type="text" name="roleNameEdit" placeholder='Ubah peran' bgColor="white" borderColor={"grey"} color={"black"} value={editRoleSchema.values.roleNameEdit} onChange={editRoleSchema.handleChange}/>
+                    </InputWithError>
+                </ModalBody>
+                <ModalFooter>
+                    <Button type="submit" colorScheme={"green"}>Simpan</Button>
+                </ModalFooter>
+        </form>
     )
 }
 
