@@ -30,7 +30,7 @@ const RoleForm = (props) => {
     <form onSubmit={addRoleSchema.handleSubmit}>
         <HStack>
             <InputWithError margin={"0"} padding={"1"} errors={addRoleSchema.errors.roleName} touched={addRoleSchema.touched.roleName}>
-                <Input type="text" name="roleName" placeholder='Tambahkan peran ...' bgColor="white" borderColor={"grey"} color={"black"} value={addRoleSchema.values.email} onChange={addRoleSchema.handleChange}/>
+                <Input type="text" name="roleName" placeholder='Tambahkan peran ...' bgColor="white" borderColor={"grey"} color={"black"} value={addRoleSchema.values.roleName} onChange={addRoleSchema.handleChange}/>
             </InputWithError>
             <Button type="submit" colorScheme={"green"}>Tambah</Button>
         </HStack>
