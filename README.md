@@ -29,7 +29,8 @@
 ## Version code:
 • Preparation:\
 &emsp;FE-PREP = Preparation\
-&emsp;FE-ROUT = App Routes
+&emsp;FE-ROUT = App Routes\
+&emsp;FE-READ = README.md for frontend/client side
 
 • Components:\
 &emsp;FE-FOCA = Form Card\
