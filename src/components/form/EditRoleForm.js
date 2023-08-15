@@ -4,9 +4,15 @@ import axios from 'axios';
 import React from 'react';
 import ModalRegular from '../modal/ModalRegular';
 import InputWithError from '../input/InputWithError';
-import { Input } from '@chakra-ui/react';
+import { Box, Input, Text } from '@chakra-ui/react';
+import { TbShieldCog } from 'react-icons/tb';
 
 const EditRoleForm = (props) => {
+    const modalRoleEditTitle = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
+        <TbShieldCog size={70}/>
+        <Text as={"b"} fontSize="2xl">Ubah Peran</Text>
+    </Box>;
+
     const editRoleSchema = useFormik({
         initialValues: {
             roleNameEdit: props.selectedRole
