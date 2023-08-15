@@ -5,7 +5,7 @@ const ModalBlank = (props) => {
     return (
         <Modal isOpen={props.isOpen} onClose={props.onCloseX}>
             <ModalOverlay />
-            <ModalContent>{props.children}
+            <ModalContent>
                 <ModalCloseButton />
                 {props.children}
             </ModalContent>
