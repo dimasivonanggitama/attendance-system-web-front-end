@@ -33,8 +33,7 @@ const EditRoleForm = (props) => {
                 props.fetchData();
             }).catch(error => {
                 setIsLoading(false);
-                console.log(error.response.data.error);
-                alert(error.response.data.message);
+                // alert(error.response.data.message);
             });
         }
     });
