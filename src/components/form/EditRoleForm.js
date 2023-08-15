@@ -2,6 +2,9 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 import axios from 'axios';
 import React from 'react';
+import ModalRegular from '../modal/ModalRegular';
+import InputWithError from '../input/InputWithError';
+import { Input } from '@chakra-ui/react';
 
 const EditRoleForm = (props) => {
     const editRoleSchema = useFormik({
@@ -26,7 +29,11 @@ const EditRoleForm = (props) => {
         }
     });
     return (
-        <div>EditRoleForm</div>
+        <ModalRegular isOpen={props.isOpen} onCloseX={props.onClose} /*onSubmit={}*/ title={modalRoleEditTitle} primaryButtonColor={"green"} primaryButton={"Simpan"} >
+            <InputWithError margin={"0"} padding={"1"} errors={editRoleSchema.errors.roleNameEdit} touched={editRoleSchema.touched.roleNameEdit}>
+                <Input type="text" name="roleNameEdit" placeholder='Ubah peran' bgColor="white" borderColor={"grey"} color={"black"} value={editRoleSchema.values.roleNameEdit} onChange={editRoleSchema.handleChange}/>
+            </InputWithError>
+        </ModalRegular>
     )
 }
 
