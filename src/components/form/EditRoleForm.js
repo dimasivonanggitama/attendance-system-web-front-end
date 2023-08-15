@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 import axios from 'axios';
 import React, { useState } from 'react';
-import ModalRegular from '../modal/ModalRegular';
 import InputWithError from '../input/InputWithError';
 import { Box, Button, Input, ModalBody, ModalFooter, ModalHeader, Text } from '@chakra-ui/react';
 import { TbShieldCog } from 'react-icons/tb';
