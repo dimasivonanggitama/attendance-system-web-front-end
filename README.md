@@ -33,6 +33,7 @@
 
 • Components:\
 &emsp;FE-FOCA = Form Card\
+&emsp;FE-ERFO = Edit Role Form\
 &emsp;FE-INPA = Input Password\
 &emsp;FE-INWE = Input With Error\
 &emsp;FE-LOGI = Login Form\
