@@ -4,10 +4,6 @@ import React, { useEffect, useState } from 'react'
 import Dashboard from '../user/Dashboard'
 import RoleForm from '../../components/form/RoleForm'
 import { TbPencil, TbShieldCancel, TbShieldCog, TbTrash, TbUserShield } from 'react-icons/tb'
-import InputWithError from '../../components/input/InputWithError'
-import { useFormik } from 'formik'
-import * as Yup from "yup";
-import ModalRegular from '../../components/modal/ModalRegular'
 import EditRoleForm from '../../components/form/EditRoleForm'
 import ModalBlank from '../../components/modal/ModalBlank'
 
@@ -18,10 +14,7 @@ const RoleManagementPage = () => {
     const [checkedItems, setCheckedItems] = useState([]);
     const [allChecked, setAllChecked] = useState(false);
     const [indeterminate, setIndeterminate] = useState(false);
-    const [isModalEditOpened, setIsModalEditOpened] = useState(false)
     const [selectedRole, setSelectedRole] = useState("");
-
-    let roleNameTest = "";
     
     const fetchData = async () => {
         await axios.get('http://localhost:8000/api/admin/role')
@@ -45,10 +38,6 @@ const RoleManagementPage = () => {
         <TbShieldCancel size={70}/>
         <Text as={"b"} fontSize="2xl">Ubah Peran</Text>
     </Box>;
-
-    // useEffect(() => {
-    //     roleNameTest = selectedRole;
-    // }, [selectedRole]);
 
     const handleCheckboxChange = (index) => {
         const checkboxStatus = [...checkedItems];
