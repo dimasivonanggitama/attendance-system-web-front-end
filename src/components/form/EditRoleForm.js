@@ -25,7 +25,7 @@ const EditRoleForm = (props) => {
         }),
         onSubmit: async values => {
             setIsLoading(true)
-            await axios.post("http://localhost:8000/api/admin/role/test", {
+            await axios.patch("http://localhost:8000/api/admin/role/update", {
                 roleNameEdit: values.roleNameEdit,
                 roleIDEdit: props.selectedRole.role_id
             }).then(resp => {
