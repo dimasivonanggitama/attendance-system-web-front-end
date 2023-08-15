@@ -21,8 +21,7 @@ const EditRoleForm = (props) => {
             await axios.post("http://localhost:8000/api/admin/role/test", {
                 roleNameEdit: values.roleNameEdit
             }).then(resp => {
-                setIsModalEditOpened(false);
-                fetchData();
+                props.fetchData();
             }).catch(error => {
                 console.log(error.response.data.error);
                 alert(error.response.data.message);
