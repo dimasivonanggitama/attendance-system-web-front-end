@@ -1,13 +1,14 @@
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import ModalRegular from '../modal/ModalRegular';
 import InputWithError from '../input/InputWithError';
 import { Box, Button, Input, ModalBody, ModalFooter, ModalHeader, Text } from '@chakra-ui/react';
 import { TbShieldCog } from 'react-icons/tb';
 
 const EditRoleForm = (props) => {
+    const [isLoading, setIsLoading] = useState(false);
     const modalRoleEditTitle = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
         <TbShieldCog size={70}/>
         <Text as={"b"} fontSize="2xl">Ubah Peran</Text>
@@ -23,12 +24,15 @@ const EditRoleForm = (props) => {
                 .required("Peran tidak boleh kosong!"),
         }),
         onSubmit: async values => {
+            setIsLoading(true)
             await axios.post("http://localhost:8000/api/admin/role/test", {
                 roleNameEdit: values.roleNameEdit,
                 roleIDEdit: props.selectedRole.role_id
             }).then(resp => {
+                setIsLoading(false);
                 props.fetchData();
             }).catch(error => {
+                setIsLoading(false);
                 console.log(error.response.data.error);
                 alert(error.response.data.message);
             });
@@ -43,7 +47,7 @@ const EditRoleForm = (props) => {
                     </InputWithError>
                 </ModalBody>
                 <ModalFooter>
-                    <Button type="submit" colorScheme={"green"}>Simpan</Button>
+                    <Button type="submit" colorScheme={"green"} isLoading={isLoading}>Simpan</Button>
                 </ModalFooter>
         </form>
     )
