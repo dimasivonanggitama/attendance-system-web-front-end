@@ -35,11 +35,9 @@ const EditRoleForm = (props) => {
         }
     });
     return (
-        <ModalRegular isOpen={props.isOpen} onCloseX={props.onClose} /*onSubmit={}*/ title={modalRoleEditTitle} primaryButtonColor={"green"} primaryButton={"Simpan"} >
-            <InputWithError margin={"0"} padding={"1"} errors={editRoleSchema.errors.roleNameEdit} touched={editRoleSchema.touched.roleNameEdit}>
-                <Input type="text" name="roleNameEdit" placeholder='Ubah peran' bgColor="white" borderColor={"grey"} color={"black"} value={editRoleSchema.values.roleNameEdit} onChange={editRoleSchema.handleChange}/>
-            </InputWithError>
-        </ModalRegular>
+        <InputWithError margin={"0"} padding={"1"} errors={editRoleSchema.errors.roleNameEdit} touched={editRoleSchema.touched.roleNameEdit}>
+            <Input type="text" name="roleNameEdit" placeholder='Ubah peran' bgColor="white" borderColor={"grey"} color={"black"} value={editRoleSchema.values.roleNameEdit} onChange={editRoleSchema.handleChange}/>
+        </InputWithError>
     )
 }
 
