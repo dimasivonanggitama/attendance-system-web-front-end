@@ -10,7 +10,10 @@ import ModalBlank from '../../components/modal/ModalBlank'
 const RoleManagementPage = () => {
     const modalRoleEdit = useDisclosure();
     const modalRoleDelete = useDisclosure();
+
     const [role, setRole] = useState([]);
+    const [oldRole, setOldRole] = useState([]);
+
     const [checkedItems, setCheckedItems] = useState([]);
     const [allChecked, setAllChecked] = useState(false);
     const [indeterminate, setIndeterminate] = useState(false);
@@ -19,7 +22,10 @@ const RoleManagementPage = () => {
     const fetchData = async () => {
         await axios.get('http://localhost:8000/api/admin/role')
         .then(response => {
+            setOldRole(role);
             setRole(response.data);
+            modalRoleEdit.onClose();
+            handleAllCheckboxChange(false);
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
@@ -29,11 +35,6 @@ const RoleManagementPage = () => {
     useEffect(() => {
         fetchData();
     }, []);
-
-    useEffect(() => {
-        handleAllCheckboxChange(false);
-        modalRoleEdit.onClose();
-    }, [role]);
 
     const modalRoleEditDelete = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
         <TbShieldCancel size={70}/>
@@ -123,7 +124,7 @@ const RoleManagementPage = () => {
                 </TableContainer>
             </Box>
             <ModalBlank isOpen={modalRoleEdit.isOpen} onCloseX={modalRoleEdit.onClose}>
-                <EditRoleForm selectedRole={selectedRole}/>
+                <EditRoleForm fetchData={fetchData} selectedRole={selectedRole}/>
             </ModalBlank>
         </Dashboard>
     )
