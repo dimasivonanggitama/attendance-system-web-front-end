@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Dashboard from '../user/Dashboard'
-import { Box, Button, HStack, Input, Select, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr, VStack, useDisclosure } from '@chakra-ui/react'
-import { TbUserPlus } from 'react-icons/tb'
+import { Box, Button, Checkbox, HStack, IconButton, Input, Select, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr, VStack, useDisclosure } from '@chakra-ui/react'
+import { TbPencil, TbTrash, TbUserPlus } from 'react-icons/tb'
 import ModalRegular from '../../components/modal/ModalRegular'
 import InputWithError from '../../components/input/InputWithError'
 import axios from 'axios'
@@ -11,8 +11,47 @@ import * as Yup from "yup";
 const UserManagementPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   
-  // const [show, setShow] = useState(false);
-  // const handleClick = () => setShow(!show);
+  const modalUserEdit = useDisclosure();
+  const modalUserDelete = useDisclosure();
+
+  const [user, setUser] = useState([]);
+
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [allChecked, setAllChecked] = useState(false);
+  const [indeterminate, setIndeterminate] = useState(false);
+  const [selectedUser, setSelectedUser] = useState("");
+
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+
+  const fetchData = async () => {
+      await axios.get('http://localhost:8000/api/admin/role')
+      .then(response => {
+          setUser(response.data);
+          modalUserEdit.onClose();
+          modalUserDelete.onClose();
+          handleAllCheckboxChange(false);
+          setIsLoadingDelete(false);
+      })
+      .catch(error => {
+          console.error('Error fetching data: ', error);
+      });
+  }
+
+  const handleCheckboxChange = (index) => {
+    const checkboxStatus = [...checkedItems];
+    checkboxStatus[index] = !checkboxStatus[index];
+    setCheckedItems(checkboxStatus);
+  }
+
+  const handleAllCheckboxChange = (value) => {
+      setAllChecked(value);
+      setCheckedItems(Array(user.length).fill(value));
+      setIndeterminate(false);
+  }
+
+  useEffect(() => {
+      fetchData();
+  }, []);
 
   const addEmployeeSchema = useFormik({
       initialValues: {
@@ -60,31 +99,56 @@ const UserManagementPage = () => {
         </Box>
         <Box bgColor={"white"} borderRadius={15}>
           <TableContainer>
-            <Table variant="simple">
+            <Table variant="simple" gap={0}>
               <Thead>
                 <Tr>
-                  <Th>To convert</Th>
-                  <Th >into</Th>
-                  <Th isNumeric>multiply by</Th>
+                  <Th width={"5%"}>
+                    <Checkbox
+                      isChecked={allChecked}
+                      isIndeterminate={indeterminate}
+                      onChange={() => handleAllCheckboxChange(!allChecked)}
+                    />
+                  </Th>
+                  <Th width={"5%"}>ID</Th>
+                  <Th colSpan={3}>Peran</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td isNumeric>25.4</Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td isNumeric>30.48</Td>
-                </Tr>
-                <Tr>
-                  <Td>yards</Td>
-                  <Td>metres (m)</Td>
-                  <Td isNumeric>0.91444</Td>
-                </Tr>
+                {
+                  (user.length === 0)? <Tr>
+                    <Td colSpan={2} textAlign={"center"}>Daftar pegawai akan muncul di sini</Td>
+                  </Tr>
+                  : user.map((item, index) => (
+                    <Tr key={index} paddingY={0} bgColor={(checkedItems[index])? "orange.200" : ""} sx={{transition: 'background-color 0.25s ease'}}>
+                      <Td width={"5%"}>
+                        <Checkbox 
+                            isChecked={checkedItems[index]}
+                            onChange={() => handleCheckboxChange(index)}
+                        />
+                      </Td>
+                      <Td width={"5%"}>{item.role_id}</Td>
+                      <Td>{item.role_name}</Td>
+                      {
+                        (checkedItems[index])? 
+                          <>
+                            <Td width={"5%"}>
+                              <IconButton colorScheme='green' aria-label='Edit User' icon={<TbPencil />} onClick={() => { setSelectedUser(user[index]); modalUserEdit.onOpen(); }} marginRight={5}/>
+                              <IconButton colorScheme='red' aria-label='Delete User' icon={<TbTrash />} onClick={() => { setSelectedUser(user[index]); modalUserDelete.onOpen(); }}/>
+                            </Td>
+                          </> 
+                        : <></>
+                      }
+                    </Tr>
+                  ))
+                }
               </Tbody>
+              <Tfoot>
+                <Tr>
+                  <Td></Td>
+                  <Td></Td>
+                  {/* <Td><RoleForm fetchData={fetchData}/></Td> */}
+                </Tr>
+              </Tfoot>
             </Table>
           </TableContainer>
           <ModalRegular title={modalTitle} isOpen={isOpen} onCloseX={onClose} primaryButton="Tambah" primaryButtonColor="green">
