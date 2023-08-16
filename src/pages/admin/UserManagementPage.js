@@ -7,10 +7,14 @@ import InputWithError from '../../components/input/InputWithError'
 import axios from 'axios'
 import { useFormik } from 'formik'
 import * as Yup from "yup";
+import ModalBlank from '../../components/modal/ModalBlank'
+import EditRoleForm from '../../components/form/EditRoleForm'
+import AddUserForm from '../../components/form/AddUserForm'
 
 const UserManagementPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   
+  const modalUserAdd = useDisclosure();
   const modalUserEdit = useDisclosure();
   const modalUserDelete = useDisclosure();
 
@@ -161,6 +165,9 @@ const UserManagementPage = () => {
           </TableContainer>
         </Box>
       </Box>
+      <ModalBlank isOpen={modalUserAdd.isOpen} onCloseX={modalUserAdd.onClose}>
+        <AddUserForm fetchData={fetchData}/>
+      </ModalBlank>
     </Dashboard>
   )
 }
