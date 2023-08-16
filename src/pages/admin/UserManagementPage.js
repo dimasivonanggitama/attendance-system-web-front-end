@@ -24,7 +24,7 @@ const UserManagementPage = () => {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   const fetchData = async () => {
-      await axios.get('http://localhost:8000/api/admin/role')
+      await axios.get('http://localhost:8000/api/admin/user')
       .then(response => {
           setUser(response.data);
           modalUserEdit.onClose();
@@ -110,6 +110,13 @@ const UserManagementPage = () => {
                     />
                   </Th>
                   <Th width={"5%"}>ID</Th>
+                  <Th>Email</Th>
+                  <Th>Password</Th>
+                  <Th>Nama Lengkap</Th>
+                  <Th>Tanggal Lahir</Th>
+                  <Th>Verifikasi Akun</Th>
+                  <Th>Bergabung</Th>
+                  <Th>Peran</Th>
                   <Th colSpan={3}>Peran</Th>
                 </Tr>
               </Thead>
@@ -126,8 +133,14 @@ const UserManagementPage = () => {
                             onChange={() => handleCheckboxChange(index)}
                         />
                       </Td>
-                      <Td width={"5%"}>{item.role_id}</Td>
-                      <Td>{item.role_name}</Td>
+                      <Td width={"5%"}>{item.user_id}</Td>
+                      <Td>{item.email}</Td>
+                      <Td>{item.password}</Td>
+                      <Td>{item.fullname}</Td>
+                      <Td>{item.birthday}</Td>
+                      <Td>{item.verified}</Td>
+                      <Td>{item.createdAt}</Td>
+                      <Td>{item.role_id}</Td>
                       {
                         (checkedItems[index])? 
                           <>
