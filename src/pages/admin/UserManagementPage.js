@@ -159,20 +159,6 @@ const UserManagementPage = () => {
               </Tfoot>
             </Table>
           </TableContainer>
-          <ModalRegular title={modalTitle} isOpen={isOpen} onCloseX={onClose} primaryButton="Tambah" primaryButtonColor="green">
-            <InputWithError errors={addEmployeeSchema.errors.email} touched={addEmployeeSchema.touched.email}>
-              <Input type="text" name="email" placeholder='Alamat email' bgColor="white" borderColor={"grey"} color={"black"} value={addEmployeeSchema.values.email} onChange={addEmployeeSchema.handleChange}/>
-            </InputWithError>
-            <InputWithError errors={addEmployeeSchema.errors.fullname} touched={addEmployeeSchema.touched.fullname}>
-              <Input type="text" name="fullname" placeholder='Nama lengkap' bgColor="white" borderColor={"grey"} color={"black"} value={addEmployeeSchema.values.fullname} onChange={addEmployeeSchema.handleChange}/>
-            </InputWithError>
-            <InputWithError errors={addEmployeeSchema.errors.role} touched={addEmployeeSchema.touched.role}>
-              <Select name='role' placeholder='- - - Pilih peran - - -' bgColor="white" borderColor={"grey"} color={"black"} >
-                <option value="admin">Admin</option>
-                <option value="employee">Employee</option>
-              </Select>
-            </InputWithError>
-          </ModalRegular>
         </Box>
       </Box>
     </Dashboard>
