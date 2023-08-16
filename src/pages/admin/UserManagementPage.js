@@ -83,11 +83,6 @@ const UserManagementPage = () => {
           alert("Done");
       }
   });
-
-  const modalTitle = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-    <TbUserPlus size={70}/>
-    <Text as={"b"} fontSize="2xl">Tambah Pegawai</Text>
-  </Box>;
   return (
     <Dashboard>
       <Box >
