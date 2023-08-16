@@ -18,19 +18,24 @@ const RoleManagementPage = () => {
     const [allChecked, setAllChecked] = useState(false);
     const [indeterminate, setIndeterminate] = useState(false);
     const [selectedRole, setSelectedRole] = useState("");
+
+    const [isLoadingDelete, setIsLoadingDelete] = useState(false);
     
     const deleteRole = async () => {
-        await axios.delete('http://localhost:8000/api/admin/deletetest', {
+        setIsLoadingDelete(true);
+        await axios.delete('http://localhost:8000/api/admin/delete', {
             roleIDDelete: selectedRole
         })
         .then(response => {
             setRole(response.data);
             modalRoleDelete.onClose();
             handleAllCheckboxChange(false);
+            setIsLoadingDelete(false);
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
             alert('Error fetching data: ', error);
+            setIsLoadingDelete(false);
         });
     }
 
@@ -140,7 +145,7 @@ const RoleManagementPage = () => {
             <ModalBlank isOpen={modalRoleEdit.isOpen} onCloseX={modalRoleEdit.onClose}>
                 <EditRoleForm fetchData={fetchData} selectedRole={selectedRole}/>
             </ModalBlank>
-            <ModalRegular isOpen={modalRoleDelete.isOpen} onCloseX={modalRoleDelete.onClose} title={modalTitleRoleDelete} primaryButton={"Hapus"} primaryButtonColor={"red"} onSubmit={deleteRole}>
+            <ModalRegular isOpen={modalRoleDelete.isOpen} onCloseX={modalRoleDelete.onClose} title={modalTitleRoleDelete} primaryButton={"Hapus"} primaryButtonColor={"red"} onSubmit={deleteRole} isLoading={isLoadingDelete}>
                 <Text as="b" fontSize={"md"}>Apakah anda yakin ingin menghapus peran ini?</Text>
                 <Text>Peran yang dihapus tidak dapat kembali lagi</Text>
             </ModalRegular>
