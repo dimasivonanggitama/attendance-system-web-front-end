@@ -33,6 +33,7 @@
 &emsp;FE-READ = README.md for frontend/client side
 
 • Components:\
+&emsp;FE-AUFO = Add User Form\
 &emsp;FE-FOCA = Form Card\
 &emsp;FE-ERFO = Edit Role Form\
 &emsp;FE-INPA = Input Password\

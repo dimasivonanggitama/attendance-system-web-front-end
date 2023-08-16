@@ -7,10 +7,14 @@ import InputWithError from '../../components/input/InputWithError'
 import axios from 'axios'
 import { useFormik } from 'formik'
 import * as Yup from "yup";
+import ModalBlank from '../../components/modal/ModalBlank'
+import EditRoleForm from '../../components/form/EditRoleForm'
+import AddUserForm from '../../components/form/AddUserForm'
 
 const UserManagementPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   
+  const modalUserAdd = useDisclosure();
   const modalUserEdit = useDisclosure();
   const modalUserDelete = useDisclosure();
 
@@ -83,16 +87,11 @@ const UserManagementPage = () => {
           alert("Done");
       }
   });
-
-  const modalTitle = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-    <TbUserPlus size={70}/>
-    <Text as={"b"} fontSize="2xl">Tambah Pegawai</Text>
-  </Box>;
   return (
     <Dashboard>
       <Box >
         <Box display={"flex"} marginBottom={5}>
-          <HStack borderRadius={15} boxShadow={"md"} padding={"3"} width={"auth"} bgColor={"white"} _hover={{background: "gray.200", cursor: "pointer"}} onClick={onOpen}>
+          <HStack borderRadius={15} boxShadow={"md"} padding={"3"} width={"auth"} bgColor={"white"} _hover={{background: "gray.200", cursor: "pointer"}} onClick={modalUserAdd.onOpen}>
             <TbUserPlus size={25}/>
             <Text>Tambah Pegawai</Text>
           </HStack>
@@ -116,7 +115,6 @@ const UserManagementPage = () => {
                   <Th>Tanggal Lahir</Th>
                   <Th>Verifikasi Akun</Th>
                   <Th>Bergabung</Th>
-                  <Th>Peran</Th>
                   <Th colSpan={3}>Peran</Th>
                 </Tr>
               </Thead>
@@ -164,22 +162,11 @@ const UserManagementPage = () => {
               </Tfoot>
             </Table>
           </TableContainer>
-          <ModalRegular title={modalTitle} isOpen={isOpen} onCloseX={onClose} primaryButton="Tambah" primaryButtonColor="green">
-            <InputWithError errors={addEmployeeSchema.errors.email} touched={addEmployeeSchema.touched.email}>
-              <Input type="text" name="email" placeholder='Alamat email' bgColor="white" borderColor={"grey"} color={"black"} value={addEmployeeSchema.values.email} onChange={addEmployeeSchema.handleChange}/>
-            </InputWithError>
-            <InputWithError errors={addEmployeeSchema.errors.fullname} touched={addEmployeeSchema.touched.fullname}>
-              <Input type="text" name="fullname" placeholder='Nama lengkap' bgColor="white" borderColor={"grey"} color={"black"} value={addEmployeeSchema.values.fullname} onChange={addEmployeeSchema.handleChange}/>
-            </InputWithError>
-            <InputWithError errors={addEmployeeSchema.errors.role} touched={addEmployeeSchema.touched.role}>
-              <Select name='role' placeholder='- - - Pilih peran - - -' bgColor="white" borderColor={"grey"} color={"black"} >
-                <option value="admin">Admin</option>
-                <option value="employee">Employee</option>
-              </Select>
-            </InputWithError>
-          </ModalRegular>
         </Box>
       </Box>
+      <ModalBlank isOpen={modalUserAdd.isOpen} onCloseX={modalUserAdd.onClose}>
+        <AddUserForm fetchData={fetchData}/>
+      </ModalBlank>
     </Dashboard>
   )
 }
