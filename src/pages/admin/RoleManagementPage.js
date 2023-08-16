@@ -6,13 +6,13 @@ import RoleForm from '../../components/form/RoleForm'
 import { TbPencil, TbShieldCancel, TbShieldCog, TbTrash, TbUserShield } from 'react-icons/tb'
 import EditRoleForm from '../../components/form/EditRoleForm'
 import ModalBlank from '../../components/modal/ModalBlank'
+import ModalRegular from '../../components/modal/ModalRegular'
 
 const RoleManagementPage = () => {
     const modalRoleEdit = useDisclosure();
     const modalRoleDelete = useDisclosure();
 
     const [role, setRole] = useState([]);
-    const [oldRole, setOldRole] = useState([]);
 
     const [checkedItems, setCheckedItems] = useState([]);
     const [allChecked, setAllChecked] = useState(false);
@@ -22,7 +22,6 @@ const RoleManagementPage = () => {
     const fetchData = async () => {
         await axios.get('http://localhost:8000/api/admin/role')
         .then(response => {
-            setOldRole(role);
             setRole(response.data);
             modalRoleEdit.onClose();
             handleAllCheckboxChange(false);
@@ -36,9 +35,9 @@ const RoleManagementPage = () => {
         fetchData();
     }, []);
 
-    const modalRoleEditDelete = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
+    const modalTitleRoleDelete = <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
         <TbShieldCancel size={70}/>
-        <Text as={"b"} fontSize="2xl">Ubah Peran</Text>
+        <Text as={"b"} fontSize="2xl">Hapus Peran</Text>
     </Box>;
 
     const handleCheckboxChange = (index) => {
@@ -103,8 +102,8 @@ const RoleManagementPage = () => {
                                             (checkedItems[index])? 
                                                 <>
                                                     <Td width={"5%"}>
-                                                        <IconButton colorScheme='green' aria-label='Edit Role' icon={<TbPencil /> } onClick={() => { setSelectedRole(role[index]); modalRoleEdit.onOpen(); }} marginRight={5}/>
-                                                        <IconButton colorScheme='red' aria-label='Delete Role' icon={<TbTrash />}/>
+                                                        <IconButton colorScheme='green' aria-label='Edit Role' icon={<TbPencil />} onClick={() => { setSelectedRole(role[index]); modalRoleEdit.onOpen(); }} marginRight={5}/>
+                                                        <IconButton colorScheme='red' aria-label='Delete Role' icon={<TbTrash />} onClick={() => { setSelectedRole(role[index]); modalRoleDelete.onOpen(); }}/>
                                                     </Td>
                                                 </> 
                                             : <></>
@@ -126,6 +125,10 @@ const RoleManagementPage = () => {
             <ModalBlank isOpen={modalRoleEdit.isOpen} onCloseX={modalRoleEdit.onClose}>
                 <EditRoleForm fetchData={fetchData} selectedRole={selectedRole}/>
             </ModalBlank>
+            <ModalRegular isOpen={modalRoleDelete.isOpen} onCloseX={modalRoleDelete.onClose} title={modalTitleRoleDelete} primaryButton={"Hapus"} primaryButtonColor={"red"} /*onSubmit={deleteRole}*/>
+                <Text as="b" fontSize={"md"}>Apakah anda yakin ingin menghapus peran ini?</Text>
+                <Text>Peran yang dihapus tidak dapat kembali lagi</Text>
+            </ModalRegular>
         </Dashboard>
     )
 }
