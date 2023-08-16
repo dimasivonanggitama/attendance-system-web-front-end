@@ -91,7 +91,7 @@ const UserManagementPage = () => {
     <Dashboard>
       <Box >
         <Box display={"flex"} marginBottom={5}>
-          <HStack borderRadius={15} boxShadow={"md"} padding={"3"} width={"auth"} bgColor={"white"} _hover={{background: "gray.200", cursor: "pointer"}} onClick={onOpen}>
+          <HStack borderRadius={15} boxShadow={"md"} padding={"3"} width={"auth"} bgColor={"white"} _hover={{background: "gray.200", cursor: "pointer"}} onClick={modalUserAdd.onOpen}>
             <TbUserPlus size={25}/>
             <Text>Tambah Pegawai</Text>
           </HStack>
@@ -115,7 +115,6 @@ const UserManagementPage = () => {
                   <Th>Tanggal Lahir</Th>
                   <Th>Verifikasi Akun</Th>
                   <Th>Bergabung</Th>
-                  <Th>Peran</Th>
                   <Th colSpan={3}>Peran</Th>
                 </Tr>
               </Thead>

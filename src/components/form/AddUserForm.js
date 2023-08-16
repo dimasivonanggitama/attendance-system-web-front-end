@@ -46,7 +46,7 @@ const AddUserForm = (props) => {
         }),
         onSubmit: async values => {
             setIsLoading(true)
-            await axios.patch("http://localhost:8000/api/admin/user/addadd", {
+            await axios.post("http://localhost:8000/api/admin/user/create", {
                 email: values.email,
                 fullname: values.fullname,
                 role: values.role
@@ -76,7 +76,7 @@ const AddUserForm = (props) => {
                                 <option value={item.role_id}>{item.role_name}</option>
                             ))
                         }
-                        </Select>
+                    </Select>
                 </InputWithError>
             </ModalBody>
             <ModalFooter>
