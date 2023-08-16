@@ -22,19 +22,19 @@ const RoleManagementPage = () => {
     const [isLoadingDelete, setIsLoadingDelete] = useState(false);
     
     const deleteRole = async () => {
+        console.log(selectedRole.role_id);
         setIsLoadingDelete(true);
-        await axios.delete('http://localhost:8000/api/admin/delete', {
-            roleIDDelete: selectedRole
+        await axios.delete('http://localhost:8000/api/admin/role/delete', { 
+            data: {
+                roleIDDelete: selectedRole.role_id
+            }
         })
         .then(response => {
-            setRole(response.data);
-            modalRoleDelete.onClose();
-            handleAllCheckboxChange(false);
-            setIsLoadingDelete(false);
+            fetchData();
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
-            alert('Error fetching data: ', error);
+            alert('Error fetching data: ', error.response.data.message);
             setIsLoadingDelete(false);
         });
     }
@@ -44,7 +44,9 @@ const RoleManagementPage = () => {
         .then(response => {
             setRole(response.data);
             modalRoleEdit.onClose();
+            modalRoleDelete.onClose();
             handleAllCheckboxChange(false);
+            setIsLoadingDelete(false);
         })
         .catch(error => {
             console.error('Error fetching data: ', error);
